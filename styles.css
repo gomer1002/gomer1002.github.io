@@ -1,0 +1,38 @@
+body {
+ 	background-color: #EEEEEE;
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-around;
+}
+
+.block-content {
+	width: 90%;
+	margin: 0 5%;
+	color: #1f2b4d;
+}
+
+button {
+	background-color: #3a6bd8;
+	margin: 20px;
+	border-radius: 10px;
+	border: none;
+	width: 20%;
+	min-width: 90px;
+	padding: 10px;
+	color: #EEEEEE;
+}
+
+pre {
+	white-space: pre-wrap;
+	word-break: keep-all;
+	background-color: #EEEEEE;
+	font-family: Consolas,Menlo,
+		Monaco,Lucida Console,
+		Liberation Mono,
+		DejaVu Sans Mono,
+		Bitstream Vera Sans Mono,
+		Courier New,monospace,serif;
+}
+
