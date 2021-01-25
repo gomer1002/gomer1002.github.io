@@ -1,6 +1,24 @@
 // get jsons on page load
 window.onload = function () {
-	httpGetJson();
+	//httpGetJson();
+	httpGetRepos();
+}
+
+//get repos from github
+function httpGetRepos() {
+	let xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", 'https://api.github.com/users/gomer1002/repos', false);
+	xmlHttp.send(null);
+	let repos = (xmlHttp.responseText ? JSON.parse(xmlHttp.responseText) : null);
+	localStorage.setItem('repos', JSON.stringify(repos));
+
+	let cont = document.querySelector(".content");
+	cont.innerHTML += "<pre>My projects:\n</pre>"
+	repos.forEach(rep => {//<a href=""></a>
+		cont.innerHTML += "<pre>\t<a target=blank href=\""+ rep.html_url +"\">" + rep.name + "</a>\n</pre>";
+	});
+
+	//cont.innerHTML += "<pre>" + stringToShow + "<pre><br>";
 }
 
 // get jsons and save
@@ -125,5 +143,5 @@ return false;
 function addPost(stringToShow) {
 	//
 	let cont = document.querySelector(".content");
-	cont.innerHTML += "<pre>" + stringToShow + "<pre><br>";
+	cont.innerHTML += "<pre>" + stringToShow + "</pre><br>";
 }
