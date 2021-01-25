@@ -1,7 +1,7 @@
 // get jsons on page load
 window.onload = function () {
 	//httpGetJson();
-	//httpGetRepos();
+	httpGetRepos();
 	httpGetAnimes();
 }
 
