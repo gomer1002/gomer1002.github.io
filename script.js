@@ -4,16 +4,27 @@ window.onload = function () {
 	httpGetRepos();
 }
 
-//get repos from github
+//github api sample
 function httpGetRepos() {
 	let xmlHttp = new XMLHttpRequest();
+
+	//get repos
 	xmlHttp.open("GET", 'https://api.github.com/users/gomer1002/repos', false);
 	xmlHttp.send(null);
 	let repos = (xmlHttp.responseText ? JSON.parse(xmlHttp.responseText) : null);
 	localStorage.setItem('repos', JSON.stringify(repos));
 
+	//get zen
+	xmlHttp.open("GET", 'https://api.github.com/zen', false);
+	xmlHttp.send(null);
+	let zen = (xmlHttp.responseText ? xmlHttp.responseText : null);
+	localStorage.setItem('zen', zen);
+
+	//show everything
 	let cont = document.querySelector(".content");
-	cont.innerHTML += "<pre>My projects:\n</pre>"
+	cont.innerHTML += "<center><pre>" + zen + "</pre></center>";
+	console.log(zen);
+	cont.innerHTML += "<pre>\nMy projects:\n</pre>"
 	repos.forEach(rep => {//<a href=""></a>
 		cont.innerHTML += "<pre>\t<a target=blank href=\""+ rep.html_url +"\">" + rep.name + "</a>\n</pre>";
 	});
