@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
-	<script src="./js/script.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Gomer1002 - Разные разности</title>
-</head>
-<body id="page">
-	<div class="block-content">
-		<div class="content">
-			<div>
-				<div style="width: auto; height: auto; margin: 10px; position: relative;">
-					<iframe allowfullscreen frameborder="0" style="width:400px; height:450px; margin: 10px" src="./img/diagram.png"></iframe>
-				</div>
-				<pre>
 from math import sqrt
 #ex 2
 def ex2():
@@ -59,19 +42,4 @@ def ex6():
 #ex3()
 #ex4()
 #ex5()
-ex6()	
-				</pre>
-				<pre>
-<a target=blank href="./files/mdk work 4(1-6).py" >> Python 5 задач <	(Кликни для просмотра)</a>
-<a target=blank href="./files/mdk work 3.py" >> Python рекурсивная сортировка списка <	(Кликни для просмотра)</a>
-				</pre>
-			</div>
-		</div>
-		<center>
-			<button id="showPost" value="0" onclick="addConsPost()">
-				Show next
-			</button>
-		</center>
-	</div>
-</body>
-</html>
+ex6()
