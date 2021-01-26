@@ -1,42 +1,13 @@
 // get jsons on page load
 window.onload = function () {
 	//httpGetJson();
-	httpGetRepos();
-	httpGetAnimes();
+	//httpGetRepos();
+	//httpGetAnimes();
 }
 
 //shikimori api
 // v1 https://shikimori.one/api/doc/1.0
 // v2 https://shikimori.one/api/doc
-// ouath guide https://shikimori.one/oauth
-
-// APPLICATION_NAME		githubParser
-// CLIENT_ID 			EQ7bdEXo-_euNVEUsVpyOOwn2cJg4AydKUylAPHhvGY
-// CLIENT_SECRET 		dJv6XFrKXbIDDNZKHeVDu4f4olqeCywmjGrXH24iWj4
-// REDIRECT_URI 		urn:ietf:wg:oauth:2.0:oob
-
-// link for AUTORIZATION_CODE 
-// https://shikimori.one/oauth/authorize?client_id=EQ7bdEXo-_euNVEUsVpyOOwn2cJg4AydKUylAPHhvGY&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=
-
-/* sample
-curl -X POST "https://shikimori.one/oauth/token" \
--H "User-Agent: APPLICATION_NAME" \
--F grant_type="authorization_code" \
--F client_id="CLIENT_ID" \
--F client_secret="CLIENT_SECRET" \
--F code="AUTORIZATION_CODE" \
--F redirect_uri="REDIRECT_URI"
-*/
-
-/* with my data
-curl -X POST "https://shikimori.one/oauth/token" \
--H "User-Agent: githubParser" \
--F grant_type="authorization_code" \
--F client_id="EQ7bdEXo-_euNVEUsVpyOOwn2cJg4AydKUylAPHhvGY" \
--F client_secret="dJv6XFrKXbIDDNZKHeVDu4f4olqeCywmjGrXH24iWj4" \
--F code="Iglxu9rWlzGOv15N5ROFvcDrJ9kyIhtLKOI30X-5pBI" \
--F redirect_uri="urn:ietf:wg:oauth:2.0:oob"
-*/
 
 /*
 check user_id and other stuff
@@ -51,17 +22,45 @@ info
 https://shikimori.one/api/doc/2.0/user_rates/index
 */
 function httpGetAnimes() {
-	let auth = new XMLHttpRequest();
-	//auth.open('POST', 'https://shikimori.one/oauth/token', true);
-	//
-	auth.open('POST', 'https://shikimori.one/oauth/authorize?client_id=EQ7bdEXo-_euNVEUsVpyOOwn2cJg4AydKUylAPHhvGY&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=', false);
-	//auth.send(null);
-	console.log(auth.status);
-	console.log(auth.responseText);
-	//auth.setRequestHeader('User-Agent', 'githubParser');
-	//auth.setRequestHeader('grant_type', 'authorization_code';
-	//auth.setRequestHeader('client_id', this.clientID);
+	let xmlHttp = new XMLHttpRequest();
+	xmlHttp.open('GET', 'https://shikimori.one/api/v2/user_rates?user_id=397613&status=completed', true);
+	xmlHttp.send(null);
+
+	xmlHttp.onreadystatechange = function () {
+		if (xmlHttp.readyState === 4) {
+			console.log(xmlHttp.readyState === XMLHttpRequest.DONE, xmlHttp.status);
+			let animes = (xmlHttp.responseText ? JSON.parse(xmlHttp.responseText) : null);
+			//
+			let cont = document.querySelector(".content");
+			cont.innerHTML += "<pre>\nMy anime list:\n</pre>"
+			//
+			animes.forEach(rec => {
+				let titleXmlHttp = new XMLHttpRequest();
+				//
+				titleXmlHttp.open('GET', 'https://shikimori.one/api/animes/' + rec.target_id, false);
+				titleXmlHttp.send(null);
+				console.log(rec.target_id, titleXmlHttp.readyState, titleXmlHttp.status);
+				//
+					if (titleXmlHttp.readyState === XMLHttpRequest.DONE && titleXmlHttp.status == 200) {
+						let title = JSON.parse(titleXmlHttp.responseText);
+						//
+						cont.innerHTML += "<pre>\t" + title.russian + ' / ' +
+						title.episodes + "\n</pre>";
+					}
+				titleXmlHttp.onreadystatechange = function () {
+					console.log(titleXmlHttp.readyState === XMLHttpRequest.DONE, titleXmlHttp.status);
+					//
+				}
+				sleep(200)
+			});
+		}
+	}
 }
+
+function sleep(ms) {
+	ms += new Date().getTime();
+	while (new Date() < ms){}
+} 
 
 
 //github api sample
@@ -83,7 +82,7 @@ function httpGetRepos() {
 	//show everything
 	let cont = document.querySelector(".content");
 	cont.innerHTML += "<center><pre>" + zen + "</pre></center>";
-	console.log(zen);
+	//console.log(zen);
 	cont.innerHTML += "<pre>\nMy projects:\n</pre>"
 	repos.forEach(rep => {//<a href=""></a>
 		cont.innerHTML += "<pre>\t<a target=blank href=\""+ rep.html_url +"\">" + rep.name + "</a>\n</pre>";
