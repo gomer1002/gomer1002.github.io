@@ -74,14 +74,16 @@ function httpGetRepos() {
 	localStorage.setItem('repos', JSON.stringify(repos));
 
 	//get zen
-	xmlHttp.open("GET", 'https://api.github.com/zen', false);
-	xmlHttp.send(null);
-	let zen = (xmlHttp.responseText ? xmlHttp.responseText : null);
-	localStorage.setItem('zen', zen);
+	//xmlHttp.open("GET", 'https://api.github.com/zen', false);
+	//xmlHttp.send(null);
+	//let zen = (xmlHttp.responseText ? xmlHttp.responseText : null);
+	//localStorage.setItem('zen', zen);
 
 	//show everything
 	let cont = document.querySelector(".content");
 	cont.innerHTML += "<center><pre>" + zen + "</pre></center>";
+
+	//cont.innerHTML += "<center><pre>" + zen + "</pre></center>";
 	//console.log(zen);
 	cont.innerHTML += "<pre>\nMy projects:\n</pre>"
 	repos.forEach(rep => {//<a href=""></a>
