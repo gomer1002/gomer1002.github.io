@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	<script src="./js/script.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gomer1002 - Разные разности</title>
+</head>
+<body id="page">
+	<div class="block-content">
+		<div class="content">
+			<div>
+				<div style="width: auto; height: auto; margin: 10px; position: relative;">
+					<iframe allowfullscreen frameborder="0" style="width:400px; height:450px; margin: 10px" src="./img/diagram.png"></iframe>
+				</div>
+				<pre>
+from math import sqrt
+#ex 2
+def ex2():
+    print('задание 2')
+    t = str(input('введите 3 числа через запятую: ')).split(',')
+    print('max = ',max(t), '; min = ', min(t))
+
+#ex 3
+def ex3():
+    print('задание 3')
+    from math import sqrt
+    t = str(input('введите 3 числа через запятую: ')).split(',')
+    pp = (int(t[0])+int(t[1])+int(t[2]))/2.0
+    s = sqrt(pp*(pp-int(t[0]))*(pp-int(t[1]))*(pp-int(t[2])))
+    print(s)
+
+#ex 4
+def ex4():
+    print('задание 4')
+    g = input('введите вес в граммах: ')
+    kg = int(g)/1000.0
+    print(kg,'килограмм')
+    print(kg/1000.0, 'тонн')
+
+#ex 5
+def ex5():
+    print('задание 5')
+    byte = int(input('введите кол-во байт: '))
+    kbyte = byte/1024.0
+    mbyte = kbyte/1024.0
+    print(kbyte,'- килобайт;',mbyte,'- мегабайт')
+
+#ex 6
+def ex6():
+    print('задание 6')
+    x = int(input('введите x: '))
+    y = int(input('введите y: '))
+    if (x*y != 0):
+        print(1.0/(x*y))
+
+#ex2()
+#ex3()
+#ex4()
+#ex5()
+ex6()	
+				</pre>
+				<pre>
+<a target=blank href="./files/mdk work 4(1-6).py" >> Python 5 задач <	(Кликни для просмотра)</a>
+<a target=blank href="./files/mdk work 3.py" >> Python рекурсивная сортировка списка <	(Кликни для просмотра)</a>
+				</pre>
+			</div>
+		</div>
+		<center>
+			<button id="showPost" value="0" onclick="addConsPost()">
+				Show next
+			</button>
+		</center>
+	</div>
+</body>
+</html>
