@@ -25,7 +25,15 @@ function httpGetAnimes() {
 	let xmlHttp = new XMLHttpRequest();
 	xmlHttp.open('GET', 'https://shikimori.one/api/v2/user_rates?user_id=397613&status=completed', true);
 	xmlHttp.send(null);
-
+	/*
+	fetch('https://shikimori.one/oauth/authorize?client_id=bce7ad35b631293ff006be882496b29171792c8839b5094115268da7a97ca34c&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=', {credentials: 'include',mode:'no-cors', redirect:'follow'})
+  .then((response) => {
+    return response;
+  })
+  .then((data) => {
+    console.log(data);
+  });
+  */
 	xmlHttp.onreadystatechange = function () {
 		if (xmlHttp.readyState === 4) {
 			console.log(xmlHttp.readyState === XMLHttpRequest.DONE, xmlHttp.status);
